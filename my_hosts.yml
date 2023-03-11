@@ -1,0 +1,7 @@
+all:
+  children:
+    my_targets:
+      hosts:
+        target1:
+          ansible_ssh_host: 192.168.1.4
+          ansible_ssh_port: 22
