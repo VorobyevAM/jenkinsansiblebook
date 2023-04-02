@@ -1,0 +1,9 @@
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Chown zoo
+      command:
+        cmd: sudo chown -R zookeeper:zookeeper /opt/zookeeper /var/log/zookeeper
