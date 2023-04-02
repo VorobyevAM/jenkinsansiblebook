@@ -6,5 +6,5 @@
   tasks:
     - name: unzip zookeeper
       ansible.builtin.unarchive:
-        src: /home/kafka/apache-zookeeper-*-bin.tar.gz
+        src: /home/kafka/apache-zookeeper-3.8.1-bin.tar.gz
         dest: /opt/zookeeper
