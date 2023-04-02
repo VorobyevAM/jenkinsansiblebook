@@ -1,0 +1,9 @@
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Add zookeeper user
+      command:
+        cmd: sudo useradd -r -c 'Zookeeper service' zookeeper
