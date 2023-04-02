@@ -1,0 +1,9 @@
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Make dir for zookeeper
+      command:
+        cmd: sudo mkdir -p /opt/zookeeper/data /var/log/zookeeper
