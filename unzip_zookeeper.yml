@@ -5,6 +5,5 @@
   remote_user: kafka
   tasks:
     - name: unzip zookeeper
-      ansible.builtin.unarchive:
-        src: /home/kafka/apache-zookeeper-3.8.1-bin.tar.gz
-        dest: /opt/zookeeper
+      command:
+        cmd: sudo tar zxvf /home/kafka/apache-zookeeper-3.8.1-bin.tar.gz -C /opt/zookeeper --strip-components=1
