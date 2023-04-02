@@ -7,6 +7,6 @@
         msg: "Test debug"
     - name: full system upgrade
       become: yes
-      pacman:
+      yum:
         update_cache: yes
         upgrade: yes
