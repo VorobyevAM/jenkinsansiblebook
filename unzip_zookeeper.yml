@@ -1,0 +1,9 @@
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: unzip zookeeper
+      command:
+        cmd: sudo tar zxvf /home/kafka/apache-zookeeper-*-bin.tar.gz -C /opt/zookeeper --strip-components=1
