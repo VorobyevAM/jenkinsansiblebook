@@ -1,0 +1,13 @@
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Copy file with owner and permission, using symbolic representation
+      copy:
+        src: ./java.sh
+        dest: /etc/profile.d/java.sh
+        owner: kafka
+        group: kafka
+        mode: u=rwx,g=rx,o=rx
