@@ -8,3 +8,4 @@
       get_url:
         url: https://dlcdn.apache.org/zookeeper/zookeeper-3.8.1/apache-zookeeper-3.8.1-bin.tar.gz
         dest: "/home/kafka"
+        validate_certs: false
