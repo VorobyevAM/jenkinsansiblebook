@@ -1,0 +1,14 @@
+
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: "Debug"
+      ansible.builtin.debug:
+        msg: "Test debug"
+    - name: install jdk
+      yum:
+        name: java-11-openjdk-devel
+        state: latest
