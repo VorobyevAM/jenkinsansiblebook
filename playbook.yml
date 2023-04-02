@@ -5,3 +5,8 @@
     - name: "Debug"
       ansible.builtin.debug:
         msg: "Test debug"
+    - name: full system upgrade
+      become: yes
+      pacman:
+        update_cache: yes
+        upgrade: yes
