@@ -1,6 +1,8 @@
 ---
 - name: "Test playbook run"
   hosts: all
+  become: true
+  become_user: kafka
   tasks:
     - name: "Debug"
       ansible.builtin.debug:
