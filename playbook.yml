@@ -5,8 +5,7 @@
     - name: "Debug"
       ansible.builtin.debug:
         msg: "Test debug"
-    - name: full system upgrade
-      become: yes
+    - name: install wget
       yum:
-        update_cache: yes
-        upgrade: yes
+        name: wget
+        state: latest
