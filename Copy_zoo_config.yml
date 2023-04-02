@@ -1,0 +1,13 @@
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Copy file with owner and permission, using symbolic representation
+      copy:
+        src: ./zoo.cfg
+        dest: /opt/zookeeper/conf/zoo.cfg
+        owner: zookeeper
+        group: zookeeper
+        mode: u=rw,g=r,o=r
