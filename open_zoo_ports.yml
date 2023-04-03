@@ -1,0 +1,12 @@
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Open ports
+      command:
+        cmd: sudo firewall-cmd --permanent --add-port={2181,2888,3888}/tcp
+    - name: Firewalld reload
+      command:
+        cmd: sudo firewall-cmd --reload
