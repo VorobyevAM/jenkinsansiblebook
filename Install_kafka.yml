@@ -1,0 +1,33 @@
+---
+- name: "Test playbook run"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Make kafka dir
+      command:
+        cmd: sudo mkdir /opt/kafka
+    - name: Download kafka
+      get_url:
+        url: https://dlcdn.apache.org/kafka/3.4.0/kafka_2.12-3.4.0.tgz
+        dest: "/home/kafka"
+        validate_certs: false
+    - name: Unzip kafka
+      command:
+        cmd: sudo tar zxf /home/kafka/kafka_2.12-3.4.0.tgz -C /opt/kafka --strip 1
+    - name: Chown kafka
+      command:
+        cmd: sudo chown -R kafka:kafka /opt/kafka
+    - name: Make kafka demon
+      copy:
+        src: ./kafka.service
+        dest: /etc/systemd/system/
+        owner: kafka
+        group: kafka
+        mode: u=rw,g=r,o=r
+    - name: Open kafka port
+      command:
+        cmd: sudo firewall-cmd --permanent --add-port=9092/tcp
+    - name: Reload firewalld
+      command:
+        cmd: sudo firewall-cmd --reload
