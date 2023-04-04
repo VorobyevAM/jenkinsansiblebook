@@ -9,7 +9,6 @@
         cmd: sudo systemctl restart "{{ demon_name }}"
       register: output
     - name: Check demon status
-      ios_command:
         commands: sudo systemctl status "{{ demon_name }}"
       register: result
     - name: Debug registered var
