@@ -7,4 +7,4 @@
     - name: Add line in file
       ansible.builtin.lineinfile:
         path: {{ file_path }}
-        line: {{ add_line }}
+        line: {{ line }}
