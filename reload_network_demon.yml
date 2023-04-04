@@ -9,7 +9,8 @@
         cmd: sudo systemctl restart "{{ demon_name }}"
       register: output
     - name: Check demon status
-        commands: sudo systemctl status "{{ demon_name }}"
+      command:
+        cmd: sudo systemctl status "{{ demon_name }}"
       register: result
     - name: Debug registered var
       debug: var=result.stdout_lines
