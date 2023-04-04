@@ -1,5 +1,5 @@
 ---
-- name: "Restart network"
+- name: Restart network
   hosts: "{{ host }}"
   become: true
   remote_user: kafka
