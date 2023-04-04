@@ -8,13 +8,13 @@
       command:
         cmd: sudo systemctl restart "{{ demon_name }}"
       register: output
-   - name: PRINT OUT THE OUTPUT VARIABLE
-     debug:
-       var: output
+    - name: PRINT OUT THE OUTPUT VARIABLE
+      debug:
+        var: output
     - name: Check demon status
       command:
         cmd: sudo systemctl status "{{ demon_name }}"
       register: output
     - name: PRINT OUT THE OUTPUT VARIABLE
-     debug:
-       var: output
+      debug:
+        var: output
