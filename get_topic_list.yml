@@ -6,7 +6,7 @@
   tasks:
     - name: Run command
       command:
-        cmd: sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server "{{ SERVER }}" --list
+        cmd: sudo /opt/kafka/bin/kafka-topics.sh --bootstrap-server "{{ SERVER }}":"{{ PORT }}" --list
       register: result
     - name: Print topic list
       debug: var=result.stdout_lines
