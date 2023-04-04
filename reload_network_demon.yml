@@ -9,4 +9,4 @@
         cmd: sudo systemctl restart "{{ demon_name }}"
     - name: Check demon status
       command:
-        cmd: sudo systemctl restart "{{ demon_name }}"
+        cmd: sudo systemctl status "{{ demon_name }}"
