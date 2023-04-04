@@ -6,5 +6,5 @@
   tasks:
     - name: Add line in file
       ansible.builtin.lineinfile:
-        path: {{ file_path }}
-        line: {{ line }}
+        path: "{{ file_path }}"
+        line: "{{ line }}"
