@@ -1,0 +1,9 @@
+---
+- name: "Create topic"
+  hosts: "{{ host }}"
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Run command to create topic
+      command:
+        cmd: sudo /opt/kafka/bin/kafka-topics.sh --create --bootstrap-server "{{ KAFKA_SERVER }}" --replication-factor "{{ REPLICATION_FACTOR }}" --partitions "{{ PARTITIONS }}" --topic "{{ TOPIC_NAME }}" --config cleanup.policy=delete --config delete.retention.ms=60000
