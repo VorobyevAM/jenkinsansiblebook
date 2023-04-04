@@ -4,6 +4,6 @@
   become: true
   remote_user: kafka
   tasks:
-    - name: "Run command systemctl"
+    - name: Run command systemctl
       command:
         cmd: sudo systemctl restart network
