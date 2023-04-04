@@ -1,0 +1,10 @@
+---
+- name: "Add line"
+  hosts: all
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Add line in file
+      ansible.builtin.lineinfile:
+        path: {{ file_path }}
+        line: {{ add_line }}
