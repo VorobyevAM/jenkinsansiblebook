@@ -13,5 +13,5 @@
         cmd: sudo systemctl status "{{ demon_name }}"
       register: output
     - name: PRINT OUT THE OUTPUT VARIABLE
-      debug:
+      shell:
         register: result
