@@ -6,4 +6,7 @@
   tasks:
     - name: Run command systemctl
       command:
-        cmd: sudo systemctl restart network
+        cmd: sudo systemctl restart "{{ demon_name }}"
+    - name: Check demon status
+      command:
+        cmd: sudo systemctl restart "{{ demon_name }}"
