@@ -18,3 +18,7 @@ all:
           ansible_ssh_host: 10.0.2.21
         kubernetes_node2:
           ansible_ssh_host: 10.0.2.22
+    prometheus_servers:
+      hosts:
+        prometheus:
+          ansible_ssh_host: 10.0.2.30
