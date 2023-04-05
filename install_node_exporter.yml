@@ -1,0 +1,39 @@
+---
+- name: "Install node exporter"
+  hosts: "{{ host }}"
+  become: true
+  remote_user: kafka
+  tasks:
+    - name: Download node exporter
+      get_url:
+        url: https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
+        dest: "/tmp"
+        validate_certs: false
+    - name: Make dir /opt/node_exporter
+      command:
+        cmd: sudo mkdir /opt/node_exporter
+    - name: Unzip node_exporter
+      command:
+        cmd: sudo tar zxf /tmp/node_exporter-1.5.0.linux-amd64.tar.gz -C /opt/node_exporter/ --strip 1
+    - name: Copy run file
+      command:
+        cmd: sudo cp /opt/node_exporter/node_exporter /usr/local/bin
+    - name: Create user node_exporter
+      command:
+        cmd: sudo useradd --no-create-home --shell /bin/false node_exporter
+    - name: Make kafka_exporter demon
+      copy:
+        src: ./node_exporter.service
+        dest: /etc/systemd/system/
+        owner: node_exporter
+        group: node_exporter
+        mode: u=rw,g=r,o=r
+    - name: Open kafka port
+      command:
+        cmd: sudo firewall-cmd --permanent --add-port=9101/tcp
+    - name: Reload firewalld
+      command:
+        cmd: sudo firewall-cmd --reload
+    - name: Enable node_exporter
+      command:
+        cmd: sudo systemctl enable node_exporter --now
