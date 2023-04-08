@@ -1,6 +1,9 @@
 all:
   vars:
     ansible_port: 22
+  hosts:
+    postgrees:
+      ansible_ssh_host: 10.0.2.50
   children:
     kafka_cluster:
       hosts:
