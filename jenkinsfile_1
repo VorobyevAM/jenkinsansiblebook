@@ -11,7 +11,7 @@ pipeline {
         stage('Install kafka') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) { 
-                  sh 'ansible-playbook test_playbook.yml -i my_hosts.yml -e "host=${HOST}" --vault-password-file=pass_phrase.txt'
+                  sh 'ansible-playbook test_playbook.yml -i my_hosts.yml --vault-password-file=pass_phrase.txt -e "host=${HOST}"'
                 }
             }
         }
