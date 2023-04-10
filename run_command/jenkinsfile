@@ -2,7 +2,7 @@ pipeline {
 
     parameters {
         string(name: 'HOST')
-        string(name: 'COMMAND', defaultValue: 'DATE', description: 'Укажите команду')
+        text(name: 'COMMAND', defaultValue: 'DATE', description: 'Укажите команду')
 
         //text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
 
