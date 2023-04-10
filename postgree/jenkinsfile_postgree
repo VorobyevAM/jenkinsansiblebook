@@ -11,7 +11,7 @@ pipeline {
         stage('Install kafka') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) { 
-                  sh 'ansible-playbook postgree/install_postgree.yml -i my_hosts.yml --vault-password-file=pass_phrase.txt -e "host=${HOST}"'
+                  sh 'ansible-playbook postgree/install_postgree.yml -i my_hosts.yml --vault-password-file=postgree/pass_phrase.txt -e "host=${HOST}"'
                 }
             }
         }
