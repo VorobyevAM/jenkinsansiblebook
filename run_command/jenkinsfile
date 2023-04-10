@@ -1,0 +1,38 @@
+pipeline {
+
+    parameters {
+        string(name: 'HOST')
+        string(name: 'COMMAND', defaultValue: 'DATE', description: 'Укажите команду')
+
+        //text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+
+        //booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+
+        //choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+
+        //password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+    }
+
+    agent any
+
+    options{
+        ansiColor('xterm')
+        timestamps()
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: "git@github.com:VorobyevAM/jenkinsansiblebook.git", credentialsId: 'github_cred'
+            }
+        }
+        
+        stage('Install kafka') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) { 
+                  sh 'ansible-playbook run_command/run_command.yml -i my_hosts.yml --vault-password-file=run_command/pass_phrase.txt -e "host=${HOST} command=$"{COMMAND}"'
+                }
+            }
+        }
+    }
+}

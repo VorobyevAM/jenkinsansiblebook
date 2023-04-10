@@ -1,0 +1,10 @@
+---
+- name: "Run commanm playbook"
+  hosts: "{{ host }}"
+  become: true
+  vars_files:
+    - secret
+  tasks:
+    - name: run command - "{{ command }}"
+      command:
+        cmd: "{{ command }}"
