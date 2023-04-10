@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: "git@github.com:VorobyevAM/jenkinsansiblebook.git", credentialsId: 'github_cred'
+            }
+        }
+        
+        stage('Install kafka') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) { 
+                  sh 'ansible-playbook install_postgree.yml -i my_hosts.yml --vault-password-file=pass_phrase.txt -e "host=${HOST}"'
+                }
+            }
+        }
+    }
+}
