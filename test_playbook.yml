@@ -1,0 +1,7 @@
+---
+- name: "Test playbook run"
+  hosts: "{{ host }}"
+  tasks:
+    - name: Make dir
+      command:
+        cmd: sudo mkdir /home/jenkins/tratata
