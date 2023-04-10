@@ -7,4 +7,4 @@
   tasks:
     - name: Make dir
       command:
-        cmd: sudo mkdir /home/jenkins/tratata
+        cmd: sudo mkdir /home/postgree/tratata
