@@ -30,7 +30,7 @@ pipeline {
         stage('Install kafka') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) { 
-                  sh 'ansible-playbook run_command/run_command.yml -i my_hosts.yml --vault-password-file=run_command/pass_phrase.txt -e "host=${HOST} command=$"{COMMAND}"'
+                  sh 'ansible-playbook run_command/run_command.yml -i my_hosts.yml --vault-password-file=run_command/pass_phrase.txt -e "host=${HOST} command=${COMMAND}"'
                 }
             }
         }
