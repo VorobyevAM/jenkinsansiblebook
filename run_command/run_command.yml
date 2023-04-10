@@ -9,4 +9,5 @@
       shell: "{{ command }}"
       register: result
     - name: Debug registered var
-      debug: var=result.stdout_lines
+      debug:
+        msg: result.stdout_lines
