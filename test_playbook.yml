@@ -1,6 +1,7 @@
 ---
 - name: "Test playbook run"
   hosts: "{{ host }}"
+  become: true
   tasks:
     - name: Make dir
       command:
