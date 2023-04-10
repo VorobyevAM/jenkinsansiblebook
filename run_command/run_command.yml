@@ -8,3 +8,6 @@
     - name: run command - "{{ command }}"
       command:
         cmd: "{{ command }}"
+      register: result
+    - name: Debug registered var
+      debug: var=result.stdout_lines
