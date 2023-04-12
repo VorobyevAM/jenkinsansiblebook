@@ -32,7 +32,7 @@
         dest: /etc/systemd/system/
         owner: node_exporter
         group: node_exporter
-        mode: u=rw,g=r,o=r
+        mode: u=rwx,g=rwx,o=r
     - name: Open node_exporter port
       firewalld:
         port: 9101/tcp
