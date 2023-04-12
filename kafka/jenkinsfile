@@ -17,7 +17,7 @@ pipeline {
         stage('Create topic') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) { 
-                  sh 'ansible-playbook kafka/create_topic.yml -i my_hosts.yml --vault-password-file=pass_phrase.txt -e "host=${KAFKA_SERVER} KAFKA_SERVER=${CLUSTER} REPLICATION_FACTOR=${REPLICATION_FACTOR} PARTITIONS=${PARTITIONS} TOPIC_NAME=${TOPIC_NAME}"'
+                  sh 'ansible-playbook kafka/create_topic.yml -i my_hosts.yml --vault-password-file=kafka/pass_phrase.txt -e "host=${KAFKA_SERVER} KAFKA_SERVER=${CLUSTER} REPLICATION_FACTOR=${REPLICATION_FACTOR} PARTITIONS=${PARTITIONS} TOPIC_NAME=${TOPIC_NAME}"'
                 }
             }
         }
