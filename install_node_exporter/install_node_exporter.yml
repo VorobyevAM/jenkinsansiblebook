@@ -41,7 +41,7 @@
         permanent: true
         state: enabled
     - name: Reload firewalld
-      notify: firewalld reload
+      command: firewall-cmd --reload
     - name: Enable node_exporter
       service:
         name: node_exporter
