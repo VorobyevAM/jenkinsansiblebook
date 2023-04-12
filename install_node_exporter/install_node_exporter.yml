@@ -28,7 +28,7 @@
         remote_src: yes
     - name: Make kafka_exporter demon
       copy:
-        src: ./install_node_exporter/node_exporter.service
+        src: /install_node_exporter/node_exporter.service
         dest: /etc/systemd/system/
         owner: node_exporter
         group: node_exporter
