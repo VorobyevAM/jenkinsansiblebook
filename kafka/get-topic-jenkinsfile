@@ -14,7 +14,7 @@ pipeline {
         stage('Get topic list') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) {
-                  sh 'ansible-playbook kafka/create_topic.yml -i my_hosts.yml --vault-password-file=kafka/pass_phrase.txt -e "host=${SERVER} SERVER=${SERVER} PORT=${PORT}"'
+                  sh 'ansible-playbook kafka/get_topic_list.yml -i my_hosts.yml --vault-password-file=kafka/pass_phrase.txt -e "host=${SERVER} SERVER=${SERVER} PORT=${PORT}"'
                 }
             }
         }
