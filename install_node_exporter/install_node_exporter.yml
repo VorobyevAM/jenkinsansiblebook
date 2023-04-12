@@ -23,7 +23,6 @@
       unarchive:
         src: /tmp/node_exporter-1.5.0.linux-amd64.tar.gz
         dest: /opt/node_exporter
-        validate_certs: false
     - name: Copy run file
       copy:
         src: /opt/node_exporter/node_exporter
