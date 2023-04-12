@@ -2,7 +2,8 @@
 - name: "Get list topic"
   hosts: "{{ host }}"
   become: true
-  remote_user: kafka
+  vars_files:
+    - secret
   tasks:
     - name: Run command
       command:
