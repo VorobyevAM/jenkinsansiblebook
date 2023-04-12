@@ -1,0 +1,21 @@
+pipeline {
+    parameters {
+        string(name: 'HOST')
+    }
+
+    agent any
+
+    options{
+        ansiColor('xterm')
+        timestamps()
+    }
+    stages {
+        stage('Install node_exporter') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) {
+                  sh 'ansible-playbook install_node_exporter/install_node_exporter.yml -i my_hosts.yml --vault-password-file=install_node_exporter/pass_phrase.txt -e "host=${HOST}"'
+                }
+            }
+        }
+    }
+}
