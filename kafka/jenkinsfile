@@ -1,5 +1,6 @@
 pipeline {
     parameters {
+        string(name: 'TOPIC_NAME')
         string(name: 'KAFKA_SERVER')
         choice(name: 'CLUSTER', choices: ['kafka1:9092,kafka2:9092,kafka3:9092'], description: 'Pick something')
         string(name: 'REPLICATION_FACTOR')
