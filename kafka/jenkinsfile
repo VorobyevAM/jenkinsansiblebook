@@ -1,0 +1,25 @@
+pipeline {
+    parameters {
+        string(name: 'KAFKA_SERVER')
+        choice(name: 'CLUSTER', choices: ['kafka1:9092,kafka2:9092,kafka3:9092'], description: 'Pick something')
+        string(name: 'REPLICATION_FACTOR')
+        string(name: 'PARTITIONS')
+    }
+
+    agent any
+
+    options{
+        ansiColor('xterm')
+        timestamps()
+    }
+
+        stage('Create topic') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) { 
+                  sh 'ansible-playbook kafka/create_topic.yml -i my_hosts.yml --vault-password-file=pass_phrase.txt -e "host=${KAFKA_SERVER}
+                  KAFKA_SERVER=${CLUSTER} REPLICATION_FACTOR=${REPLICATION_FACTOR} PARTITIONS=${PARTITIONS} TOPIC_NAME=${TOPIC_NAME}""'
+                }
+            }
+        }
+    }
+}
