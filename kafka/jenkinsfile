@@ -12,7 +12,7 @@ pipeline {
         ansiColor('xterm')
         timestamps()
     }
-
+    stages {
         stage('Create topic') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) { 
