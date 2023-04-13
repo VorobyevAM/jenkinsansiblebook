@@ -1,0 +1,32 @@
+---
+- hosts: "{{ host }}"
+  become: true
+  vars:
+    created_username: jenkins
+  tasks:
+    - name: Setup passwordless sudo
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: '/usr/sbin/visudo -cf %s'
+
+    - name: Create a new regular user with sudo privileges
+      user:
+        name: jenkins
+        state: present
+        groups: wheel
+        append: true
+        create_home: true
+    - name: Set authorized key for remote user
+      ansible.posix.authorized_key:
+        user: jenkins
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    - name: Disable password authentication for root
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        state: present
+        regexp: '^#?PermitRootLogin'
+        line: 'PermitRootLogin prohibit-password'
