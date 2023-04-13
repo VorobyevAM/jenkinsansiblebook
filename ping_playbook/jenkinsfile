@@ -1,0 +1,21 @@
+pipeline {
+    parameters {
+        string(name: 'HOST', defaultValue: '127.0.0.1', description: 'Укажите хост')
+    }
+
+    agent any
+
+    options{
+        ansiColor('xterm')
+        timestamps()
+    }
+    stages {
+        stage('Go ping-pong') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) {
+                  sh 'ansible-playbook ping_playbook/ping_playbook.yml -i my_hosts.yml -e "host=${HOST}"'
+                }
+            }
+        }
+    }
+}
