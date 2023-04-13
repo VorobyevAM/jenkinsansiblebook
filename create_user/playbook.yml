@@ -1,6 +1,9 @@
 ---
 - hosts: "{{ host }}"
   become: true
+  remote_user: root
+  vars_files:
+    - root_secret
   tasks:
     - name: Create user jenkins
       user:
