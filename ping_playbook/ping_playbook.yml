@@ -1,0 +1,5 @@
+- hosts: "{{ host }}"
+  become: true
+  tasks:
+  - ping:
+    crash: data
