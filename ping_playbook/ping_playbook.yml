@@ -3,4 +3,4 @@
   tasks:
     - name: Ping-pong
       ping:
-      crash: data
+        data: crash
