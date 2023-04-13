@@ -1,5 +1,4 @@
 - hosts: "{{ host }}"
-  become: true
   tasks:
     - name: Ping-pong
       ping:
