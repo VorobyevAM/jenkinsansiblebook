@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Install node_exporter') {
             steps {
-                  sh 'ansible-playbook create_user/playbook1.yml -i my_hosts.yml -u root --vault-password-file=create_user/vault_password.txt -e "host=${HOST}"'
+                  sh 'ansible-playbook create_user/playbook1.yml -i my_hosts.yml -u root -p root -e "host=${HOST}"'
             }
         }
     }
