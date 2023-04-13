@@ -23,6 +23,7 @@ pipeline {
         always {
             script {
                 cleanWs()
+                log.ok("Выполнена очистка рабочего пространства")
             }
         }
     }
