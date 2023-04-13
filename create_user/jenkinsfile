@@ -1,0 +1,21 @@
+pipeline {
+    parameters {
+        string(name: 'HOST')
+    }
+
+    agent any
+
+    options{
+        ansiColor('xterm')
+        timestamps()
+    }
+    stages {
+        stage('Install node_exporter') {
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'jenkins_cred', keyFileVariable: 'PRIVATE')]) {
+                  sh 'ansible-playbook create_user/playbook.yml -i my_hosts.yml --u remote_user --ask-pass -e "host=${HOST}"'
+                }
+            }
+        }
+    }
+}

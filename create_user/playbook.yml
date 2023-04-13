@@ -1,0 +1,23 @@
+---
+- hosts: "{{ host }}"
+  become: true
+  tasks:
+    - name: Create user jenkins
+      user:
+        name: jenkins
+        password: $6$QVca3GxF/YD4uJsO$fHOdM1SLX8hTR6PrEnGTCYePlIHh0NgSBNy6xYVDOXTTxTbi.oJeWdzIqgX61v6k3lYMC6mPgEe/smYTFI9FX.
+        #python -c 'import crypt; print crypt.crypt("1Passw0rrd22")' >
+        shell: /bin/bash
+        groups: wheel
+        append: yes
+    - name: Создать SSH ключ для jenkins в ~jenkins/.ssh/id_rsa
+      user:
+        name: jenkins
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+    - name: Добавить authorized key из файла id_rsa.pub
+      authorized_key:
+        user: jenkins
+        state: present
+        key: "{{ lookup('file', '/home/jenkins/.ssh/id_rsa.pub') }}"
