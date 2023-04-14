@@ -2,8 +2,12 @@ all:
   vars:
     ansible_port: 22
   hosts:
-    postgrees:
+    postgres:
       ansible_ssh_host: 10.0.2.50
+    prometheus:
+      ansible_ssh_host: 10.0.2.30
+    grafana:
+      ansible_ssh_host: 10.0.2.31
   children:
     kafka_cluster:
       hosts:
@@ -21,7 +25,3 @@ all:
           ansible_ssh_host: 10.0.2.21
         kubernetes_node2:
           ansible_ssh_host: 10.0.2.22
-    prometheus_servers:
-      hosts:
-        prometheus:
-          ansible_ssh_host: 10.0.2.30
